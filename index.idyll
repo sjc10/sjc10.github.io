@@ -1,0 +1,47 @@
+[meta title:"Test_homework10" description:"Short description of your project" /]
+
+[Header
+  fullWidth:true
+  title:"Test_homework10"
+  subtitle:"Welcome to Idyll. Open index.idyll to start writing"
+  author:"Sai Jayanth Chittajallu"
+  authorLink:"https://idyll-lang.org"
+  date:`(new Date()).toDateString()`
+  background:"#222222"
+  color:"#ffffff"
+   /]
+
+
+## Introduction
+In built Idyll's [component](https://idyll-lang.org/docs/components).
+
+## Data
+The building inventory data.
+
+// uploading the file csv data
+
+[data name:"BuildingInventory" source:"building_inventory.csv" /]
+
+Checking the data.
+[Table data:BuildingInventory /]
+
+Input the built in [chart](https://idyll-lang.org/docs/component/chart):
+to analyze the data
+
+[Chart type:"time" data:`BuildingInventory` domain:`null` range:`null` x:"Year Acquired" y:"Square Footage" /]
+
+
+## Plotting with Vega lite
+
+Vega lite plot test
+
+[IdyllVegaLite data:BuildingInventory spec:`{
+  mark: {"type":"line", "tooltip":true},
+  width:"600", 
+  height:"300",
+  encoding: {
+    "x": {"field": "Year Acquired", "type":"temporal", axis:{title: "Year Acquired",format:"%Y"}},
+    "y": {"field": "Square Footage","type":"quantitative"}
+  }
+ }` /]
+
